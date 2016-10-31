@@ -1,6 +1,7 @@
 main  : main.cpp potter.o driver.o params.o models.o viewer.o shaker.o keeper.o linker.o bumper.o sorter.o fixers.o util.o cell.o data.o geom.o util.hpp cell.hpp geom.hpp Vec.hpp Mat.hpp
 # looker, minder, helper and setter have empty shells in driver.cpp
-	c++ -O3 main.cpp -o simgen potter.o driver.o  params.o models.o viewer.o shaker.o keeper.o linker.o bumper.o sorter.o fixers.o util.o cell.o data.o geom.o -lGL -lGLU -lglut -lpthread -lm
+	c++ -O3 main.cpp -o simgen potter.o driver.o  params.o models.o viewer.o shaker.o keeper.o linker.o bumper.o sorter.o fixers.o util.o cell.o data.o geom.o -framework OpenGL -framework GLUT -lpthread -lm
+	#c++ -O3 main.cpp -o simgen potter.o driver.o  params.o models.o viewer.o shaker.o keeper.o linker.o bumper.o sorter.o fixers.o util.o cell.o data.o geom.o -lGL -lGLU -lglut -lpthread -lm
 
 
 potter.o : potter.cpp util.hpp data.hpp geom.hpp Vec.hpp Mat.hpp
@@ -16,7 +17,7 @@ models.o : models.cpp util.hpp data.hpp cell.hpp geom.hpp Vec.hpp Mat.hpp
 	c++ -c -O3 models.cpp
 
 viewer.o : viewer.cpp util.hpp data.hpp cell.hpp geom.hpp Vec.hpp Mat.hpp
-	c++ -c -O3 viewer.cpp
+	c++ -c -O3 -framework OpenGL -framework GLUT viewer.cpp
 
 shaker.o : shaker.cpp util.hpp data.hpp cell.hpp geom.hpp Vec.hpp Mat.hpp
 	c++ -c -O3 shaker.cpp

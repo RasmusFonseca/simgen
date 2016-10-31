@@ -1,3 +1,4 @@
+#include <vector>
 #include "util.hpp"
 #include "geom.hpp"
 #include "cell.hpp"
@@ -452,12 +453,12 @@ void fixHinge ( Cell *at, Bonds *bond, float leng, float limit, float creep )
 
 void fixHinge ( Cell *at, Bonds *bond, float leng, float limit, float creep, int ntry )
 {
-Vec	bs[ntry], cs[ntry];
-Vec	a,b,c,d,e,f,g,h, u,v,w, x,y,z, beste, bestf;
-int	i,j, m,n,in, link;
-float	ab,bc,cd,ad, ra,rd, pa,pd, qa,qd, p,q;
-float	ef, be, cf, dif, score, best, t,ta,td;
-Cell	*to = bond->to;
+  std::vector<Vec> bs(ntry), cs(ntry);
+  Vec	a,b,c,d,e,f,g,h, u,v,w, x,y,z, beste, bestf;
+  int	i,j, m,n,in, link;
+  float	ab,bc,cd,ad, ra,rd, pa,pd, qa,qd, p,q;
+  float	ef, be, cf, dif, score, best, t,ta,td;
+  Cell	*to = bond->to;
 	if (at->level != to->level) {
 		Pt(Bad levels in fixHinge:)
 			Pi(at->uid) Pi(to->uid) Pi(at->level) Pi(to->level) NL

@@ -125,7 +125,7 @@ void *link ( void *ptr )
 	}
 }
 
-void *rank ( void *ptr )
+void *sgrank ( void *ptr )
 {
 	printf("Starting sorter \n");
 	while (1) {
@@ -177,7 +177,7 @@ void *view ( void *ptr )
 	viewer(argcin,argvin); // sets-up graphical objects (types) then runs by callback
 }
 
-main ( int argc, char** argv ) {
+int main ( int argc, char** argv ) {
 pthread_t thread[10];
 FILE    *run;
 int	i, j, m, n;
@@ -211,12 +211,13 @@ long    rseed = (long)time(0);
 	presort();
 	Data::frame = -10;
 	argcin=argc; argvin=argv;
-	if (Data::noview) {
-		Pt(No viewing) NL
-	} else {
-		pthread_create( thread+0, 0, view, 0 );
-	}
-	pthread_create( thread+1, 0, rank, 0 );
+	//if (Data::noview) {
+	//	Pt(No viewing) NL
+	//} else {
+	//	pthread_create( thread+0, 0, view, 0 );
+	view( 0 );
+	//}
+	pthread_create( thread+1, 0, sgrank, 0 );
 	if (Data::nomove==0) { // skipped on NOMOVE
 		pthread_create( thread+2, 0, move, 0 ); // shaker
 		pthread_create( thread+3, 0, bump, 0 ); // bumper
@@ -232,6 +233,7 @@ long    rseed = (long)time(0);
 	pthread_create( thread+9, 0, pots, (void*)"other" );
 */
 	sleep(99999);
+        return 0;
 }
 
 /* code to stretch chain
